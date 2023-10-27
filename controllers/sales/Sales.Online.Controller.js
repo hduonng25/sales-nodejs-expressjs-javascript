@@ -3,11 +3,12 @@ import {v1} from "uuid";
 import bills from "../../models/Bills.js";
 import {success} from "../../respone/Respone.Util.js";
 import discount from "../../models/discount.js";
+import user from "../../models/User.js";
 
 const create_date = new Date();
-const create_by = "hduong";
 
-export async function check_out(cart_details_id, total) {
+export async function check_out(id, cart_details_id, total) {
+    const users = await user.findOne({id: id});
     let bill_details = [];
     let money = 0;
 
@@ -32,10 +33,10 @@ export async function check_out(cart_details_id, total) {
     }
 
     const idBig = await bills.findOne({}, {id: 1}, {sort: {id: -1}});
-    const id = parseInt(idBig.id) + 1;
+    const idBill = parseInt(idBig.id) + 1;
     const bill = await bills.create({
-        id: id,
-        code: 'HD' + id,
+        id: idBill,
+        code: 'HD' + idBill,
         is_deleted: false,
         type_bill: 0,
         ship_money: 0,
@@ -45,7 +46,10 @@ export async function check_out(cart_details_id, total) {
     });
 
     await bill.save();
-    return success(bill);
+    const data = {
+        bill, users
+    }
+    return success(data);
 };
 
 export async function addDiscountToBill(discount_id, order_id) {
@@ -124,7 +128,7 @@ export async function saveOrderShipCOD(amountOder, orderID, moneyShip, note, rec
                 email_receiver: email_receiver,
                 status_bill: 1,
                 create_date: create_date,
-                create_by: create_by,
+                create_by: receiver,
                 bill_money: amountOder,
                 is_deleted: false
             },

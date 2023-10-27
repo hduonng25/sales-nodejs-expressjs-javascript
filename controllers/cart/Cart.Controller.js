@@ -1,8 +1,8 @@
 import product from "../../models/Product.js";
 import cart from "../../models/Cart.js";
 import {v1} from "uuid";
-import {OK} from "../../constant/HttpResponeCode.js";
 import {error, success} from "../../respone/Respone.Util.js";
+import user from "../../models/User.js";
 
 export async function getListCartDetails(id) {
     const carts = await cart.aggregate(
@@ -15,11 +15,11 @@ export async function getListCartDetails(id) {
     return success(carts)
 };
 
-export async function addToCart(id_cart, id_color, id_size, id_product, quantity) {
+export async function addToCart(id, id_color, id_size, id_product, quantity) {
     const products = await product.findOne({id: id_product});
     if (products) {
         const product_details = products.product_details.find((details) => details.color.id === id_color && details.size.id === id_size);
-        const carts = await cart.findOne({id: id_cart});
+        const carts = await cart.findOne({user_id: id});
         const checkCartDetails = carts.cart_details.find((details) => details.product_details_id === product_details.id);
         const money = products.price * quantity;
         if (checkCartDetails) {
@@ -46,8 +46,8 @@ export async function addToCart(id_cart, id_color, id_size, id_product, quantity
     return error("product NaN");
 };
 
-export async function updateQuantity(id_cart, id_cart_details, quantity) {
-    const carts = await cart.findOne({id: id_cart});
+export async function updateQuantity(id, id_cart_details, quantity) {
+    const carts = await cart.findOne({user_id: id});
     const resuilt = await cart.aggregate([
         {$match: {id: id_cart}},
         {$unwind: "$cart_details"},
@@ -60,7 +60,7 @@ export async function updateQuantity(id_cart, id_cart_details, quantity) {
         }
     ]);
     console.log(resuilt[0])
-    await cart.updateOne({id: id_cart}, resuilt[0]);
+    await cart.updateOne({id: carts.id}, resuilt[0]);
 
     return success("done");
 };

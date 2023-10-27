@@ -1,9 +1,7 @@
 import {dataNull} from "./ValidateUltil.js";
 
 export function cartCheck(request, response, next) {
-    const {id_cart, id_color, id_size, id_product, quantity} = request.body;
-    const check_id = dataNull(id_cart, "id");
-    if (check_id) return next(check_id);
+    const {id_color, id_size, id_product, quantity} = request.body;
 
     const check_color = dataNull(id_color, "color");
     if (check_color) return next(check_color);
@@ -21,9 +19,7 @@ export function cartCheck(request, response, next) {
 };
 
 export function checkUpdate(request, response, next) {
-    const {id_cart, id_cart_details, quantity} = request.body;
-    const check_id = dataNull(id_cart, "id");
-    if (check_id) return next(check_id);
+    const {id_cart_details, quantity} = request.body;
 
     const check_details = dataNull(id_cart_details, "cart details");
     if (check_details) return next(check_details);

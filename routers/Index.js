@@ -20,16 +20,16 @@ import discountAPI from "./discount/Discount.js";
 
 const router = express.Router();
 
-router.use('/api/bill/pending', pendingAPI)
-router.use('/api/bill/awaiting', waitingAPI)
-router.use('/api/bill/cancelled', cancelledAPI)
-router.use('/api/bill/delicered', deliveredAPI)
-router.use('/api/bill/transit', transitAPI)
-router.use('/api/cart', cartAPI);
+router.use('/api/bill/pending', checkToken, pendingAPI);
+router.use('/api/bill/awaiting', waitingAPI);
+router.use('/api/bill/cancelled', cancelledAPI);
+router.use('/api/bill/delicered', deliveredAPI);
+router.use('/api/bill/transit', transitAPI);
+router.use('/api/cart', checkToken, cartAPI);
 router.use('/api/authencation', authenAPI);
 router.use('/api/user', checkToken, userAPI);
 router.use('/api/product', designsAPI, metarialAPI, sizeAPI, colorAPI, productAPI);
-router.use('/api/sales', inStoreAPI, salesOnlineAPI, vnpayAPI);
+router.use('/api/sales', checkToken, inStoreAPI, salesOnlineAPI, vnpayAPI);
 router.use('/api/discount', discountAPI);
 
 export default router;

@@ -10,21 +10,23 @@ import {check_id_body, check_id_query} from "../../validator/Base.js";
 
 const router = express.Router();
 
-router.get("/list-cart-details", check_id_query, async (request, response, next) => {
-    const {id} = request.query
+router.get("/list-cart-details", async (request, response, next) => {
+    const {id} = request.payload;
     const list = await getListCartDetails(id);
     next(list);
 });
 
 router.post("/add-to-cart", cartCheck, async (request, response, next) => {
-    const {id_cart, id_color, id_size, id_product, quantity} = request.body;
-    const addToCarts = await addToCart(id_cart, id_color, id_size, id_product, quantity);
+    const { id_color, id_size, id_product, quantity} = request.body;
+    const {id} = request.payload;
+    const addToCarts = await addToCart(id, id_color, id_size, id_product, quantity);
     next(addToCarts);
 });
 
 router.put("/update-quantity", checkUpdate, async (request, response, next) => {
-    const {id_cart, id_cart_details, quantity} = request.body
-    const update = await updateQuantity(id_cart, id_cart_details, quantity);
+    const {id_cart_details, quantity} = request.body
+    const {id} = request.payload;
+    const update = await updateQuantity(id, id_cart_details, quantity);
     next(update);
 });
 

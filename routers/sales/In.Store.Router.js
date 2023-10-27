@@ -11,8 +11,9 @@ import {check_id_body} from "../../validator/Base.js";
 const router = express.Router();
 
 router.post("/in-store/create", async (request, response, next) => {
-    await createBill();
-    response.json("create done");
+    const {id} = request.payload;
+    const create = await createBill(id);
+    next(create);
 });
 router.post("/in-store/add-product-to-bill", check_add_product, async (request, response, next) => {
     const {bill_id, product_id, color_id, size_id, quantity} = request.body;

@@ -3,31 +3,36 @@ import bills from "../../models/Bills.js";
 import mail from "../../mail/Mail.Conflig.js";
 import {success} from "../../respone/Respone.Util.js";
 import {mail_update_bill} from "../../mail/options/Mail.Option.js";
+import user from "../../models/User.js";
 
 const created_date = new Date();
-const created_by = "hduong";
 
 export async function getBill(status) {
     const listBill = await bills.find({status_bill: status, type_bill: 0});
     return success(listBill)
 };
 
-export async function updateStatus(id, status, action) {
-    const update = await bills.findOneAndUpdate(
-        {id: id},
-        {$set: {status_bill: status}},
-        {new: true}
-    );
+export async function updateStatus(id, id_user, status, action) {
+    const users = await user.findOne({id: id_user});
     const timeLine = {
         id: v1(),
-        created_by: created_by,
+        created_by: users.name,
         status_bill: status,
         type: 0,
         created_date: created_date
     };
 
-    update.time_line.push(timeLine);
-    await update.save();
+    const update = await bills.findOneAndUpdate(
+        {id: id},
+        {
+            $set: {
+                status_bill: status,
+                time_line: timeLine
+            }
+        },
+        {new: true}
+    );
+
     const sendMail = await mail_update_bill(update, action);
     await mail.sendMail(sendMail);
     return success("update successfuly");

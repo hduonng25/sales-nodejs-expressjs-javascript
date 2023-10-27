@@ -3,16 +3,23 @@ import bills from "../../models/Bills.js";
 import {v1} from "uuid";
 import {error, success} from "../../respone/Respone.Util.js";
 import discount from "../../models/discount.js";
+import user from "../../models/User.js";
 
 const create_date = new Date();
 const create_by = "hduong";
 
-export async function createBill() {
+export async function createBill(id) {
     const idBig = await bills.findOne({}, {id: 1}, {sort: {id: -1}});
-    const id = parseInt(idBig.id) + 1;
+    const idBill = parseInt(idBig.id) + 1;
+    const users = await user.findOne({id: id});
     await bills.create({
-        id: id, type_bill: 1, is_deleted: false, status_bill: 6, code: "HD" + id
-    })
+        id: idBill,
+        type_bill: 1,
+        is_deleted: false,
+        status_bill: 6,
+        code: "HD" + idBill,
+        create_by: users.name
+    });
     return success("create done");
 };
 
