@@ -1,3 +1,4 @@
-# Dự án cá nhân NodeJS
+# Dự án bán hàng NodeJS
 
-Dự án được đẩy lên đã ẩn những file quan trọng như conflig, .env, private key, public key vaf logs
+- Đây là dự án cá nhân
+- Dự án được đẩy lên đã ẩn những file quan trọng như conflig, .env, private key, public key vaf logs
