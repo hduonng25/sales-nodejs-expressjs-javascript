@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body, h1, h2, h3, h4, h5, h6, ul, li, table, th, td {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: black;
+        }
+
+        p {
+            color: #888888;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+        }
+
+        .loiChao {
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .loiChao h1 {
+            color: #338dbc;
+        }
+
+        .moDau {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .moDau a {
+            color: #338dbc;
+            text-decoration: none;
+        }
+
+        .moDau a:hover {
+            text-decoration: underline;
+        }
+
+        .thongTinDonHang p {
+            margin-bottom: 10px;
+        }
+
+        .tablea {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .tablea th, .tablea td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .order-details p {
+            margin-top: 10px;
+        }
+
+        .email-footer {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #888;
+        }
+
+        .email-footer a {
+            color: #338dbc;
+            text-decoration: none;
+        }
+
+        .email-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Bỏ gạch chân cho liên kết email */
+        .email-footer a[href^="mailto:"] {
+            text-decoration: none;
+        }
+
+        /* Làm các chữ trong bảng hiển thị to hơn */
+        .tablea {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .tablea th, .tablea td {
+            padding: 8px;
+            text-align: left;
+            font-size: 16px; /* Điều chỉnh kích thước chữ tùy ý */
+        }
+
+        /* Hiển thị đường viền cho các ô trong bảng */
+        .tablea th, .tablea td {
+            border: 1px solid #ddd;
+        }
+
+
+    </style>
+    <title>Email</title>
+</head>
+<body>
+<div class="email-container">
+    <div class="loiChao">
+        <h1>HDUONG STUDIO</h1>
+    </div>
+    <div class="moDau">
+        <h2>Xin chào <span><%= nguoiNhan %></span>,</h2>
+        <p>Hduong studio xin cập nhật cho bạn về trạng thái đơn hàng của bạn</p>
+    </div>
+
+    <h1>Thông tin đơn hàng</h1>
+    <div class="thongTinDonHang">
+        <p>Mã đơn hàng: <span><%= id %></span></p>
+        <p>Ngày đặt: <span><%= ngayDat %></span></p>
+        <p>Tên khách hàng: <span><%= nguoiNhan %></span></p>
+        <p>Số điện thoại: <span><%= soDienThoai %></span></p>
+        <p>Email: <span><%= email %></span></p>
+        <p><%= trangThai %></p>
+    </div>
+
+    <div class="order-details">
+        <table class="tablea">
+            <thead>
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% details.forEach(function(detail) { %>
+                <tr class="product-row">
+                    <td>
+                        <div style="display: flex; align-items: center;">
+                            <div>
+                                <h6>
+                                    <strong>
+                                    <span style="text-transform: uppercase" class="TenSP">
+                                        <%= detail.product_name %>
+                                    </span>
+                                    </strong>
+                                </h6>
+                                <div class="ThongTinSP">
+                                    <span><%= detail.color %></span>
+                                    <span>/</span>
+                                    <span><%= detail.size %></span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td><%= fomat(detail.quantity_product) %></td>
+                    <td><%= fomat(detail.total) %></td>
+                </tr>
+            <% }); %>
+            </tbody>
+        </table>
+
+        <p>Tổng giá trị đơn hàng: <span><%= fomat(tongGiaTriDonhang) %></span></p>
+        <p>Phí vận chuyển: <span><%= fomat(phiVanChuyen) %></span></p>
+        <p>Giảm giá:<%= fomat(giamGia) %></p>
+        <p>Tổng tiền thanh toán: <span><%= fomat(tongGiaTriDonhang) %></span>
+        </p>
+    </div>
+
+    <div class="email-footer">
+        <p>Xin chân thành cảm ơn sự quan tâm của bạn dành cho Hduong studio!</p>
+        <p>Chúng tôi còn rất nhiều những sản phẩm sẽ khiến bạn bài lòng, xin hãy ghé qua <a href="#">HDUONG</a> để tham
+            khảo thêm những sản phẩm khác</p>
+    </div>
+</div>
+</body>
+</html>
