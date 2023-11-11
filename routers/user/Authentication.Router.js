@@ -12,7 +12,7 @@ router.post("/login", async (request, response, next) => {
 
 router.put("/changePass", checkToken, async (request, response, next) => {
     const {password_old, password_new} = request.body;
-    // const {id} = request.payload;
+    const {id} = request.payload;
     const change = await changePassword(id, password_old, password_new);
     next(change);
 });

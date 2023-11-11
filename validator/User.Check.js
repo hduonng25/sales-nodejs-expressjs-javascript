@@ -1,6 +1,5 @@
 import {dataNull, duplicate} from "./ValidateUltil.js";
 import user from "../models/User.js";
-import bcrypt from 'bcrypt';
 
 export function checkCreate(request, response, next) {
     const {name, email, phone, address, role} = request.body;

@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Sales" type="NodeJSConfigurationType" application-parameters="HD.Start.js" node-parameters="D:\nodejs\Sales\node_modules\nodemon\bin\nodemon.js" path-to-js-file="HD.Start.js" working-dir="$PROJECT_DIR$">
+    <method v="2" />
+  </configuration>
+</component>

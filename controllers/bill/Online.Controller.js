@@ -81,7 +81,6 @@ export async function findDateBill(status, search) {
 };
 
 export async function getDetails(id, status) {
-    console.log(id)
     const filter = [
         {$match: {id: id, type_bill: 0}},
         {$unwind: "$time_line"},

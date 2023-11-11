@@ -4,7 +4,8 @@ import {BAD_REQUEST, CREATED, NO_CONTENT, OK} from "../constant/HttpResponeCode.
 import conflig from "../conflig/Conflig.js";
 
 const {dbName, host, port, user, password, portNode} = conflig;
-const dbUrl = `mongodb://${user}:${password}@${host}:${port}/${dbName}?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000&authSource=${dbName}&authMechanism=SCRAM-SHA-256`;
+// const dbUrl = `mongodb://${user}:${password}@${host}:${port}/${dbName}?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000&authSource=${dbName}&authMechanism=SCRAM-SHA-256`;
+const dbUrl = `mongodb://${user}:${password}@${host}:${port}/${dbName}`;
 
 export async function connect() {
     try {

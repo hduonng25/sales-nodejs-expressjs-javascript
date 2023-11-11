@@ -1,6 +1,6 @@
 import jsonwebtoken from 'jsonwebtoken';
-import {error} from "../respone/Respone.Util.js";
 import {privateKEY, publicKEY} from "./ConfligKey.js";
+import {error} from "../respone/Respone.Util.js";
 
 export function checkToken(request, response, next) {
     const {token} = request.headers;

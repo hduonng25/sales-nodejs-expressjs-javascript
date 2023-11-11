@@ -27,6 +27,7 @@ const myLogger = new winston.createLogger({
           }),
           winston.format.printf(info => `${info.timestamp} [${info.label === undefined ? "" : info.label}${info.funName === undefined ? "" : "-" + info.funName}] [${info.level}]: ${info.message}`)
      ),
+
      transports: [
           new winston.transports.DailyRotateFile({
                name: 'file',

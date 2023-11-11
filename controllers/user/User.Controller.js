@@ -8,7 +8,6 @@ import { error, success } from "../../respone/Respone.Util.js";
 import { mail_create_user } from "../../mail/options/Mail.Option.js";
 import { genToken, refreshToken} from "../../jwt/Token.js";
 
-
 export async function createUser(name, email, phone, address, role) {
     const password = RandomPassword();
     const passwordEncode = await bcrypt.hash(password, 10);
