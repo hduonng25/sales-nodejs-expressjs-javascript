@@ -2,7 +2,7 @@ import product from "../../models/Product.js";
 import bills from "../../models/Bills.js";
 import {v1} from "uuid";
 import {error, success} from "../../respone/Respone.Util.js";
-import discount from "../../models/discount.js";
+import discount from "../../models/Discount.js";
 import user from "../../models/User.js";
 
 const create_date = new Date();
