@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import discount from "../../models/discount.js";
+import discount from "../../models/Discount.js";
 import {success} from "../../respone/Respone.Util.js";
 
 export async function getAll() {
