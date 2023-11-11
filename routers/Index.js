@@ -27,7 +27,7 @@ router.use('/api/bill/delicered', deliveredAPI);
 router.use('/api/bill/transit', transitAPI);
 router.use('/api/cart', checkToken, cartAPI);
 router.use('/api/authencation', authenAPI);
-router.use('/api/user',checkToken, userAPI);
+router.use('/api/user', userAPI);
 router.use('/api/product', designsAPI, metarialAPI, sizeAPI, colorAPI, productAPI);
 router.use('/api/sales', checkToken, inStoreAPI, salesOnlineAPI, vnpayAPI);
 router.use('/api/discount', discountAPI);
