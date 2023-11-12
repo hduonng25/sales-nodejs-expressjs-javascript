@@ -1,0 +1,9 @@
+{
+    "workbench.colorTheme": "Webstorm IntelliJ Darcula Theme",
+    "workbench.iconTheme": "material-icon-theme",
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "terminal.integrated.fontFamily": "JetBrains Mono NL Regular",
+    "editor.fontSize": 13.2,
+    "editor.lineHeight": 1.7,
+    "editor.fontFamily": "JetBrains Mono NL Regular"
+}
