@@ -1,6 +1,4 @@
-import {OK} from "../../constant/HttpResponeCode.js"
 import bills from "../../models/Bills.js";
-import {dataNull} from "../../validator/ValidateUltil.js";
 import {success} from "../../respone/Respone.Util.js";
 
 export async function getBill(status) {
