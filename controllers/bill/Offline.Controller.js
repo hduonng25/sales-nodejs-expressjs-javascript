@@ -13,7 +13,7 @@ export async function find(status, search) {
             status_bill: status,
             type_bill: 1,
             is_deleted: false,
-            bill_money: search
+            bill_money: search,
         });
     } else {
         listSearch = await bills.find(
