@@ -1,6 +1,6 @@
 import sanitize from "mongo-sanitize"
 
-export default function (req, _, next) {
+export default function validate_api (req, _, next) {
     const checkSpecialCharacter = (object) => {
         const clone = JSON.parse(JSON.stringify(object));
         const cleaned = sanitize(object);
