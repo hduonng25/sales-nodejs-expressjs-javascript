@@ -11,12 +11,12 @@ const app = express();
 export const createApp = () => {
     const hostNode = '0.0.0.0';
     const portNode = conflig.portNode;
+    app.use(validate_api);
     app.use(cors());
     app.use(express.json());
     app.use(urlencoded({extended: false}));
     app.use(cookieParser());
     app.use(api);
-    app.use(validate_api);
     app.use((data, request, respone, next) => {
         handelRespone(data, request, respone, next);
     });
