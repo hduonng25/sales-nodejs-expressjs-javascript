@@ -8,7 +8,6 @@ const {dbName, host, port, user, password, portNode} = conflig;
 // const dbUrl = `mongodb://${user}:${password}@${host}:${port}/${dbName}`;
 
 const dbUrl = `mongodb://${user}:${password}@${host}:${port}/${dbName}?retryWrites=true&serverSelectionTimeoutMS=5000&connectTimeoutMS=10000&authSource=sales&authMechanism=SCRAM-SHA-256`
-console.log(dbUrl)
 
 export async function connect() {
     try {
