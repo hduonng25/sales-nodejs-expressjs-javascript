@@ -22,5 +22,4 @@ router.post("/online/save-order-cod", async (request, response, next) => {
     next(save);
 });
 
-
 export default router;
