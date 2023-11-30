@@ -7,6 +7,7 @@ export function checkToken(request, response, next) {
     if (!token) {
         return error("not_found_token", "not found token");
     }
+    
     let verifyOptions = {
         algorithm: "RS256"
     }

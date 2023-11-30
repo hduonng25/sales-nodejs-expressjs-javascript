@@ -100,7 +100,6 @@ export async function login(email, password) {
                 return success(data);
             }
         } catch (e) {
-            console.log(e)
             return error("login faild" + e, "login faild")
         }
     }
